@@ -10,8 +10,8 @@ function App() {
 
   const [reflectionData, setReflectionData] = useState({
     "Avoiding Sins": 5, // Default values for sliders
-    "Obligatory Worship": 0,
-    "Optional Worship": 0,
+    "Obligatory Worship": 5,
+    "Optional Worship": 5,
   });
 
   const handleScroll = (e) => {
