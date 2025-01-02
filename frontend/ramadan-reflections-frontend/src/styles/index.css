@@ -151,3 +151,99 @@ button:focus-visible {
 .indicator-dot.active {
   background-color: #264653; /* Highlight active section */
 }
+
+/* Center the slider container and keep spacing */
+.slider-container {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* Center the slider horizontally */
+  gap: 10px; /* Space between labels and slider */
+  margin: 1rem 0;
+  width: 100%; /* Ensure the container spans full width */
+}
+
+/* Labels for the slider (0 and 10) */
+.slider-label {
+  font-size: 0.9rem;
+  color: #264653; /* Match the theme color */
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Wrapper for slider and value display */
+.slider-wrapper {
+  position: relative;
+  flex-grow: 1; /* Allow the slider to stretch inside the container */
+  max-width: 600px; /* Extend the slider length */
+  min-width: 300px; /* Ensure a minimum width */
+}
+
+/* Custom slider styling */
+.custom-slider {
+  -webkit-appearance: none; /* Remove default browser styling */
+  appearance: none;
+  width: 100%; /* Make the slider stretch to fit the wrapper */
+  height: 12px; /* Increase height for better visibility */
+  background: #e0e0e0; /* Track color */
+  border-radius: 6px; /* Rounded edges for the slider track */
+  outline: none;
+  cursor: pointer;
+  transition: background 0.3s ease-in-out;
+}
+
+/* Custom thumb styling */
+.custom-slider::-webkit-slider-thumb {
+  -webkit-appearance: none; /* Remove default styling */
+  appearance: none;
+  width: 40px; /* Larger thumb */
+  height: 40px;
+  border-radius: 50%;
+  background: #264653; /* Thumb color matching the theme */
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-slider::-moz-range-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #264653;
+  font-size: 1rem;
+  font-weight: bold;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+}
+
+.custom-slider::-ms-thumb {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #264653;
+  cursor: pointer;
+}
+
+/* Value displayed on the slider thumb */
+.slider-value {
+  position: absolute;
+  top: 35px; /* Adjust to position above the slider */
+  font-size: 1rem;
+  font-weight: bold;
+  color: #264653;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: left 0.2s ease-in-out;
+  left: 47.5%; /* Center the value */
+}

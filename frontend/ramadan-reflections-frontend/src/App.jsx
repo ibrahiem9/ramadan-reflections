@@ -14,6 +14,17 @@ function App() {
     "Optional Worship": 5,
   });
 
+  const [commitments, setCommitments] = useState({
+    preDefined: {
+      salah: false,
+      quran: false,
+      sadaqah: false,
+    },
+    customGoals: [],
+  });
+
+  const [newCustomGoal, setNewCustomGoal] = useState("");
+
   const handleScroll = (e) => {
     const sectionIndex = Math.round(e.target.scrollTop / window.innerHeight);
     setActiveSection(sectionIndex);
@@ -27,6 +38,26 @@ function App() {
     setIsComplete(allCompleted);
   };
 
+  const handlePreDefinedToggle = (goal) => {
+    setCommitments((prev) => ({
+      ...prev,
+      preDefined: {
+        ...prev.preDefined,
+        [goal]: !prev.preDefined[goal],
+      },
+    }));
+  };
+
+  const handleAddCustomGoal = () => {
+    if (newCustomGoal.trim()) {
+      setCommitments((prev) => ({
+        ...prev,
+        customGoals: [...prev.customGoals, newCustomGoal],
+      }));
+      setNewCustomGoal("");
+    }
+  };
+
   return (
     <div className="scroll-container" onScroll={handleScroll}>
       {/* Timer Section */}
@@ -36,58 +67,76 @@ function App() {
       </div>
 
       {/* Reflection Section */}
-      <div className="section">
-        <h2>Reflection: Avoiding Sins</h2>
-        <input
-          type="range"
-          min="1"
-          max="10"
-          value={reflectionData["Avoiding Sins"]}
-          onChange={(e) =>
-            handleInputChange("Avoiding Sins", Number(e.target.value))
-          }
-        />
-        <p>Rate your progress in avoiding sins (e.g., backbiting, lying).</p>
-      </div>
-
-      <div className="section">
-        <h2>Reflection: Obligatory Worship</h2>
-        <input
-          type="range"
-          min="1"
-          max="10"
-          value={reflectionData["Obligatory Worship"]}
-          onChange={(e) =>
-            handleInputChange("Obligatory Worship", Number(e.target.value))
-          }
-        />
-        <p>Rate your progress in obligatory worship (e.g., salah, zakat).</p>
-      </div>
-
-      <div className="section">
-        <h2>Reflection: Optional Worship</h2>
-        <input
-          type="range"
-          min="1"
-          max="10"
-          value={reflectionData["Optional Worship"]}
-          onChange={(e) =>
-            handleInputChange("Optional Worship", Number(e.target.value))
-          }
-        />
-        <p>Rate your progress in optional worship (e.g., sunnah prayers, sadaqah).</p>
-      </div>
-
-      {/* Validation Feedback */}
-      {!isComplete && (
-        <div style={{ textAlign: "center", color: "red" }}>
-          <p>Please complete all reflection fields before proceeding.</p>
+      {Object.entries(reflectionData).map(([category, value]) => (
+        <div className="section" key={category}>
+        <h2>Reflection: {category}</h2>
+        <div className="slider-container">
+          <span className="slider-label">0</span>
+          <div className="slider-wrapper">
+            <input
+              type="range"
+              min="0"
+              max="10"
+              value={value}
+              onChange={(e) =>
+                handleInputChange(category, Number(e.target.value))
+              }
+              className="custom-slider"
+              id={`slider-${category}`}
+            />
+            <div className="slider-value">{value}</div>
+          </div>
+          <span className="slider-label">10</span>
         </div>
-      )}
+        <p>Rate your progress in {category.toLowerCase()}.</p>
+      </div>
+      ))}
+
+      {/* Commitments Section */}
+      <div className="section">
+        <h2>Commitments for Ramadan</h2>
+
+        {/* Pre-defined Commitments */}
+        <h3>Pre-defined Commitments</h3>
+        <div>
+          {Object.entries(commitments.preDefined).map(([goal, isSelected]) => (
+            <div key={goal}>
+              <label>
+                <input
+                  type="checkbox"
+                  checked={isSelected}
+                  onChange={() => handlePreDefinedToggle(goal)}
+                />
+                {goal === "salah" && "Pray Salah on time"}
+                {goal === "quran" && "Recite Quran daily"}
+                {goal === "sadaqah" && "Give Sadaqah regularly"}
+              </label>
+            </div>
+          ))}
+        </div>
+
+        {/* Custom Goals */}
+        <h3>Custom Goals</h3>
+        <div>
+          <input
+            type="text"
+            value={newCustomGoal}
+            placeholder="Add your custom goal"
+            onChange={(e) => setNewCustomGoal(e.target.value)}
+          />
+          <button onClick={handleAddCustomGoal}>Add Goal</button>
+        </div>
+
+        <ul>
+          {commitments.customGoals.map((goal, index) => (
+            <li key={index}>{goal}</li>
+          ))}
+        </ul>
+      </div>
 
       {/* Navigation Indicators */}
       <div className="indicator">
-        {[...Array(4)].map((_, i) => (
+        {[...Array(5)].map((_, i) => (
           <div
             key={i}
             className={`indicator-dot ${activeSection === i ? "active" : ""}`}
