@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-const CountdownTimer = ({ targetDate }) => {
+const pageContent = ({ title, content }) => {
   const calculateTimeLeft = () => {
     const difference = +new Date(targetDate) - +new Date();
     if (difference > 0) {
@@ -26,7 +26,7 @@ const CountdownTimer = ({ targetDate }) => {
   }, []);
 
   if (!timeLeft) {
-    return <div>Ramadan has started!</div>;
+    return <div>The countdown has ended!</div>;
   }
 
   return (
