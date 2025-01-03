@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from "react";
 
-const CountdownTimer = ({ targetDate }) => {
+const isEid = false;
+
+const CountdownTimer = ({ targetDate, eidDate }) => {
   const calculateTimeLeft = () => {
     const difference = +new Date(targetDate) - +new Date();
     if (difference > 0) {
@@ -10,7 +12,12 @@ const CountdownTimer = ({ targetDate }) => {
         minutes: Math.floor((difference / 1000 / 60) % 60),
         seconds: Math.floor((difference / 1000) % 60),
       };
-    } else {
+    } 
+    else if (new Date() === eidDate) {
+      isEid = true;
+      return null;
+    }
+    else {
       return null;
     }
   };
@@ -28,6 +35,10 @@ const CountdownTimer = ({ targetDate }) => {
   if (!timeLeft) {
     return <div>Ramadan has started!</div>;
   }
+
+  if (isEid) {
+    return <div>Eid Mubarak!</div>;
+  }  
 
   return (
     <div style={styles.container}>
