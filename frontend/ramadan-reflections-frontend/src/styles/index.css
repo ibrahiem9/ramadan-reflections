@@ -89,86 +89,6 @@ button:focus-visible {
   color: #264653; /* A darker color for contrast */
 }
 
-/* Navigation Buttons Container */
-.navigation-buttons {
-  position: fixed; /* Fix the buttons in place */
-  bottom: 200px; /* Move buttons closer to the bottom */
-  width: 100%;
-  display: flex;
-  justify-content: space-between; /* Space buttons to opposite sides */
-  padding: 0 10px; /* Reduce padding to bring buttons closer to the edges */
-  pointer-events: none; /* Prevent background interaction issues */
-}
-
-/* Common Button Styles */
-.nav-button {
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  border: none;
-  cursor: pointer;
-  pointer-events: auto; /* Allow buttons to be clickable */
-  background: radial-gradient(
-    circle,
-    rgba(41, 19, 210, 0.8) 0%,
-    rgba(41, 19, 210, 0.6) 30%,
-    rgba(41, 19, 210, 0.4) 50%,
-    rgba(41, 19, 210, 0.2) 70%,
-    rgba(255, 255, 255, 0) 100%
-  );
-  transition: transform 0.3s ease, background-color 1s ease;
-  position: fixed;
-}
-
-/* Left Button */
-.nav-button.left {
-  left: -250px; /* Move closer to the left edge */
-}
-
-/* Right Button */
-.nav-button.right {
-  right: -250px; /* Move closer to the right edge */
-  background: radial-gradient(
-    circle,
-    rgba(19, 210, 41, 0.8) 0%,
-    rgba(19, 210, 41, 0.6) 30%,
-    rgba(19, 210, 41, 0.4) 50%,
-    rgba(19, 210, 41, 0.2) 70%,
-    rgba(255, 255, 255, 0) 100%
-  );
-}
-
-.nav-button:hover {
-  transform: scale(1.1);
-}
-
-.nav-button:focus {
-  outline: none;
-}
-
-.nav-button.hidden {
-  display: none; /* Hide the button completely */
-}
-
-.nav-button.radiate {
-  animation: radiate 0.5s ease-out forwards;
-}
-
-.app.fading {
-  transition: background-color 0.5s ease;
-}
-
-@keyframes radiate {
-  0% {
-    opacity: 0.8;
-    transform: scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: scale(10);
-  }
-}
-
 /* Center the slider container and keep spacing */
 .slider-container {
   display: flex;
@@ -249,11 +169,19 @@ button:focus-visible {
   cursor: pointer;
 }
 
+/* Styles for the submit button */
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
 .submit-button {
   display: block;
-  margin: 2rem auto;
+  margin: 1rem auto;
   padding: 0.5rem 2rem;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #fff;
   background-color: #2933d2;
   border: none;
@@ -265,3 +193,5 @@ button:focus-visible {
 .submit-button:hover {
   background-color: #1f27a1;
 }
+
+
