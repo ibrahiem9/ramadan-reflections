@@ -140,7 +140,24 @@ function App() {
     },
   ];
 
-  const sections = sectionsData.map((section, index) => (
+  const endSection = {
+    title: "Thank You",
+    content: (
+      <>
+        <h2>Thank you for participating!</h2>
+        <p>We hope this tool has helped you reflect on your progress and set goals for the upcoming Ramadan.</p>
+        <p>Here are some links to learn more:</p>
+        <ul>
+          <li><a href="https://www.example.com">Example Link 1</a></li>
+          <li><a href="https://www.example.com">Example Link 2</a></li>
+          <li><a href="https://www.example.com">Example Link 3</a></li>
+        </ul>
+        <button className="submit-button" onClick={(e) => {setActiveSection(0);}}>Restart</button>
+      </>
+    ),
+  };
+
+  const sections = [...sectionsData, endSection].map((section, index) => (
     <div className="section" key={index}>
       <h2>{section.title}</h2>
       {section.content}
@@ -193,9 +210,14 @@ function App() {
   // Add the ability to set goals for the upcoming Ramadan
   // Add the ability to share the goals
   // Add the ability to see how others are doing
+
+  const progressPercentage = (activeSection / (sectionsData.length - 1)) * 100;
   
   return (
     <div className="app">
+      <div className="progress-bar-container">
+        <div className="progress-bar" style={{ width: `${progressPercentage}%` }}></div>
+      </div>
       <div className="content">{sections[activeSection]}</div>
     </div>
   );

@@ -194,4 +194,17 @@ button:focus-visible {
   background-color: #1f27a1;
 }
 
+/* Styles for the progress bar */
+.progress-bar-container {
+  width: 100%;
+  background-color: #e0e0e0;
+  height: 5px;
+  margin-bottom: 1rem;
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #2933d2;
+  transition: width 0.3s ease-in-out;
+}
 
